@@ -26,11 +26,13 @@ const gameBoard = (() => {
                 if(playerOne.currentPlayer && cell.innerHTML == "") {
                     board[e.target.id] = playerOne.symbol;
                     cell.innerHTML = playerOne.symbol;
+                    cell.style.color = "rgb(0, 132, 255)";
                     playerOne.currentPlayer = false;
                     playerTwo.currentPlayer = true;
                 }else if(playerTwo.currentPlayer && cell.innerHTML == "") {
                     board[e.target.id] = playerTwo.symbol;
                     cell.innerHTML = playerTwo.symbol;
+                    cell.style.color = "rgb(255, 79, 79)";
                     playerTwo.currentPlayer = false;
                     playerOne.currentPlayer = true;
                 }else return;
