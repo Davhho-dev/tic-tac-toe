@@ -57,6 +57,34 @@ header {
     grid-area: 2 / 3 / 3 / 4;
 }
 
+/* ----------- Gameboard ---------- */
+.center {
+    grid-area: 2 / 2 / 3 / 3;  
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
 .gameboard {
-    grid-area: 2 / 2 / 3 / 3;
+    display: grid;
+    grid-template-columns: repeat(3, var(--cell-size));
+    grid-template-rows: repeat(3, var(--cell-size));
+    margin: 0 auto;
+}
+
+.cell {
+    height: var(--cell-size);
+    width: var(--cell-size);
+    border: 2px solid black;
+}
+
+.restart {
+    width: 25%;
+    height: 50px;
+    font-size: 2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
