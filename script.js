@@ -1,3 +1,3 @@
-const Player = (name, symbol) => {
-    return {name, symbol};
+const Player = (name, symbol, currentPlayer) => {
+    return {name, symbol, currentPlayer};
 }
