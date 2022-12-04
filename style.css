@@ -81,6 +81,7 @@ header {
     text-align: center;
     padding-top: 10%;
     font-size: calc(var(--cell-size) * .7);
+    color: black;
 }
 
 .cell:first-child,
@@ -105,10 +106,6 @@ header {
 .cell:nth-child(4),
 .cell:nth-child(7) {
     border-left: none;
-}
-
-.cell:hover {
-    background-color: green;
 }
 
 .restart {
