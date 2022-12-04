@@ -85,6 +85,12 @@ header {
     height: 50px;
     font-size: 2rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 15px;
     cursor: pointer;
+    transition: all .5s ease;
+}
+
+.restart:hover {
+    color: white;
+    background-color: black;
 }
