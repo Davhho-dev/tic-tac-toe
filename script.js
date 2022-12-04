@@ -18,7 +18,9 @@ const gameBoard = (() => {
         [2, 4, 6]
     ];
 
-    console.log(playerOne.currentPlayer);
+    const p1 = document.getElementById("p1");
+    p1.setAttribute("style", "font-size: 4rem; color: rgb(0, 132, 255)");
+    const p2 = document.getElementById("p2");
     const playRound = (() => {
         const cells = document.querySelectorAll(".cell");
         cells.forEach((cell) => {
@@ -29,17 +31,34 @@ const gameBoard = (() => {
                     cell.style.color = "rgb(0, 132, 255)";
                     playerOne.currentPlayer = false;
                     playerTwo.currentPlayer = true;
+                    console.log(board);
+                    round++;
+                    if(round <= 9) {
+                        p1.setAttribute("style", "font-size: 3.5rem; color: black");
+                        p2.setAttribute("style", "font-size: 4rem; color: rgb(255, 79, 79)");
+                    }else {
+                        p1.setAttribute("style", "font-size: 3.5rem; color: black");
+                        p2.setAttribute("style", "font-size: 3.5rem; color: black");
+                    }
                 }else if(playerTwo.currentPlayer && cell.innerHTML == "") {
                     board[e.target.id] = playerTwo.symbol;
                     cell.innerHTML = playerTwo.symbol;
                     cell.style.color = "rgb(255, 79, 79)";
                     playerTwo.currentPlayer = false;
                     playerOne.currentPlayer = true;
+                    console.log(board);
+                    round++;
+                    if(round <= 9) {
+                        p2.setAttribute("style", "font-size: 3.5rem; color: black");
+                        p1.setAttribute("style", "font-size: 4rem; color: rgb(0, 132, 255)");
+                    }else {
+                        p2.setAttribute("style", "font-size: 3.5rem; color: black");
+                        p1.setAttribute("style", "font-size: 3.5rem; color: black");
+                    }
                 }else return;
             })
         });
     })();
-
-    return {cells};
+    return {playRound, playerOne, playerTwo};   
    
 })();
