@@ -71,13 +71,16 @@ header {
     display: grid;
     grid-template-columns: repeat(3, var(--cell-size));
     grid-template-rows: repeat(3, var(--cell-size));
-    margin: 0 auto;
+    margin: 0px auto;
 }
 
 .cell {
     height: var(--cell-size);
     width: var(--cell-size);
     border: 2px solid black;
+    text-align: center;
+    padding-top: 10%;
+    font-size: calc(var(--cell-size) * .7);
 }
 
 .cell:first-child,
@@ -102,6 +105,10 @@ header {
 .cell:nth-child(4),
 .cell:nth-child(7) {
     border-left: none;
+}
+
+.cell:hover {
+    background-color: green;
 }
 
 .restart {
