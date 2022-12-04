@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--primary-font);
 }
 
 body {
@@ -13,4 +14,27 @@ body {
     --cell-size: 200px;
     --player-size: 2rem;
     --header-size: 5rem;
+}
+
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: .5fr 2fr;
+}
+
+header {
+    grid-area: 1 / 1 / 2 / 4;
+}
+
+#p1 {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.gameboard {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+#p2 {
+    grid-area: 2 / 3 / 3 / 4;
 }
