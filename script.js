@@ -15,14 +15,17 @@ const gameBoard = (() => {
             cell.addEventListener("click", (e) => {
                 if(cell.innerHTML === "" && gameController.playerOne.currentPlayer) {
                     cell.innerHTML = gameController.current();
+                    cell.style.color = "rgb(0, 132, 255)";
                     gameController.playerOne.currentPlayer = false;
                     gameController.playerTwo.currentPlayer = true;
                 }else if(cell.innerHTML === "" && gameController.playerTwo.currentPlayer) {
                     cell.innerHTML = gameController.current();
+                    cell.style.color = "rgb(255, 79, 79)";
                     gameController.playerTwo.currentPlayer = false;
                     gameController.playerOne.currentPlayer = true;
                 }
                 displayController.current();
+                // console.log(index);
             })
         });
     }
@@ -37,12 +40,12 @@ const displayController = (() => {
     const current = () => {
         if(gameController.current() === "X") {
             console.log(gameController.playerOne);
-            p1.style.color = "green";
-            p2.style.color = "black";
+            p1.setAttribute("style", "color: green; font-size: 4rem");
+            p2.setAttribute("style", "color: black; font-size: 3.5rem");
         }else {
             console.log(gameController.playerTwo);
-            p2.style.color = "green";
-            p1.style.color = "black";
+            p2.setAttribute("style", "color: green; font-size: 4rem");
+            p1.setAttribute("style", "color: black; font-size: 3.5rem");
         }
     }
     return {current};
