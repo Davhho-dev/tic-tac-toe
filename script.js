@@ -15,22 +15,22 @@ const gameBoard = (() => {
     const update = () => {
         cells.forEach((cell) => {
             cell.addEventListener("click", (e) => {
-                if(cell.innerHTML === "" && gameController.playerOne.currentPlayer) {
+                if(cell.innerHTML === "" && gameController.playerOne.currentPlayer && !displayController.winner()) {
                     board[e.target.id] = gameController.current();
                     cell.innerHTML = gameController.current();
                     cell.style.color = "rgb(0, 132, 255)";
                     gameController.playerOne.currentPlayer = false;
                     gameController.playerTwo.currentPlayer = true;
-                }else if(cell.innerHTML === "" && gameController.playerTwo.currentPlayer) {
+                    displayController.winner();
+                }else if(cell.innerHTML === "" && gameController.playerTwo.currentPlayer && !displayController.winner()) {
                     board[e.target.id] = gameController.current();
                     cell.innerHTML = gameController.current();
                     cell.style.color = "rgb(255, 79, 79)";
                     gameController.playerTwo.currentPlayer = false;
                     gameController.playerOne.currentPlayer = true;
+                    displayController.winner();
                 }
                 displayController.current();
-                // console.log(index);
-                console.log(board);
             })
         });
     }
@@ -40,28 +40,50 @@ const gameBoard = (() => {
 const displayController = (() => {
     const p1 = document.getElementById("p1");
     const p2 = document.getElementById("p2");
-    p1.style.color = "green";
+    const center = document.querySelector(".center");
+    p1.style.color = "green"; //starts player one highlighted
+    let winDeclared = false;
+
+    const winCombination = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
     gameBoard.update();
 
     const current = () => {
-        if(gameController.current() === "X" && gameBoard.board.includes("")) {
-            console.log(gameController.playerOne);
+        if(gameController.current() === "X" && gameBoard.board.includes("") && !winDeclared) {
             p1.setAttribute("style", "color: green; font-size: 4rem");
             p2.setAttribute("style", "color: black; font-size: 3.5rem");
-        }else if(gameController.current() === "O" && gameBoard.board.includes("")) {
-            console.log(gameController.playerTwo);
+        }else if(gameController.current() === "O" && gameBoard.board.includes("") && !winDeclared) {
             p2.setAttribute("style", "color: green; font-size: 4rem");
             p1.setAttribute("style", "color: black; font-size: 3.5rem");
         }else {
             p1.setAttribute("style", "color: black; font-size: 3.5rem");
             p2.setAttribute("style", "color: black; font-size: 3.5rem");
         }
-    }
+    };
 
-    const winner = () => {
-
-    }
-    return {current};
+    let winner = () => {
+       winCombination.forEach((index) => {
+            if(gameBoard.board[index[0]] === "X" && gameBoard.board[index[1]] === "X" && gameBoard.board[index[2]] === "X") {
+                winDeclared = true;
+                console.log(gameBoard.board[index[0]] + gameBoard.board[index[1]] + gameBoard.board[index[2]]);
+                console.log("Player One Wins");
+            }else if(gameBoard.board[index[0]] === "O" && gameBoard.board[index[1]] === "O" && gameBoard.board[index[2]] === "O") {
+                winDeclared = true;
+                console.log("Player Two Wins");
+            };
+        });
+        return winDeclared;
+    };
+    return {current, winner, winDeclared};
 })();
 
 const gameController = (() => {
