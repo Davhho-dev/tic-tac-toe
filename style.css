@@ -67,6 +67,12 @@ header {
     color: var(--player-Y);
 }
 
+/* ----------- Player-Win ---------- */
+.player-win {
+    font-size: var(--player-size);
+    margin-bottom: 25px;
+}
+
 /* ----------- Gameboard ---------- */
 .center {
     grid-area: 2 / 2 / 3 / 3;  

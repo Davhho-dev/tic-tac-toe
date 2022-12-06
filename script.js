@@ -40,7 +40,7 @@ const gameBoard = (() => {
 const displayController = (() => {
     const p1 = document.getElementById("p1");
     const p2 = document.getElementById("p2");
-    const center = document.querySelector(".center");
+    const playerWin = document.querySelector(".player-win");
     p1.style.color = "green"; //starts player one highlighted
     let winDeclared = false;
 
@@ -75,15 +75,17 @@ const displayController = (() => {
             if(gameBoard.board[index[0]] === "X" && gameBoard.board[index[1]] === "X" && gameBoard.board[index[2]] === "X") {
                 winDeclared = true;
                 console.log(gameBoard.board[index[0]] + gameBoard.board[index[1]] + gameBoard.board[index[2]]);
-                console.log("Player One Wins");
+                playerWin.innerHTML = "Player One Wins";
+                playerWin.style.color = "rgb(0, 132, 255)";
             }else if(gameBoard.board[index[0]] === "O" && gameBoard.board[index[1]] === "O" && gameBoard.board[index[2]] === "O") {
                 winDeclared = true;
-                console.log("Player Two Wins");
+                playerWin.innerHTML = "Player Two Wins";
+                playerWin.style.color = "rgb(255, 79, 79)";
             };
         });
         return winDeclared;
     };
-    return {current, winner, winDeclared};
+    return {current, winner};
 })();
 
 const gameController = (() => {
