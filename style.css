@@ -123,18 +123,3 @@ header {
 .cell:nth-child(7) {
     border-left: none;
 }
-
-.restart {
-    width: 25%;
-    height: 50px;
-    font-size: 2rem;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all .5s ease;
-}
-
-.restart:hover {
-    color: white;
-    background-color: black;
-}
