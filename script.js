@@ -4,6 +4,8 @@ const Player = (name, symbol, currentPlayer) => {
 
 const gameBoard = (() => {
     const cells = document.querySelectorAll(".cell");
+    let board = ["", "", "", "", "", "", "", "", ""];
+
     const reset = () => {
         cells.forEach((cell) => {
             cell.innerHTML = "";
@@ -14,11 +16,13 @@ const gameBoard = (() => {
         cells.forEach((cell) => {
             cell.addEventListener("click", (e) => {
                 if(cell.innerHTML === "" && gameController.playerOne.currentPlayer) {
+                    board[e.target.id] = gameController.current();
                     cell.innerHTML = gameController.current();
                     cell.style.color = "rgb(0, 132, 255)";
                     gameController.playerOne.currentPlayer = false;
                     gameController.playerTwo.currentPlayer = true;
                 }else if(cell.innerHTML === "" && gameController.playerTwo.currentPlayer) {
+                    board[e.target.id] = gameController.current();
                     cell.innerHTML = gameController.current();
                     cell.style.color = "rgb(255, 79, 79)";
                     gameController.playerTwo.currentPlayer = false;
@@ -26,10 +30,11 @@ const gameBoard = (() => {
                 }
                 displayController.current();
                 // console.log(index);
+                console.log(board);
             })
         });
     }
-    return {reset, update};
+    return {reset, update, board};
 })();
 
 const displayController = (() => {
@@ -37,16 +42,24 @@ const displayController = (() => {
     const p2 = document.getElementById("p2");
     p1.style.color = "green";
     gameBoard.update();
+
     const current = () => {
-        if(gameController.current() === "X") {
+        if(gameController.current() === "X" && gameBoard.board.includes("")) {
             console.log(gameController.playerOne);
             p1.setAttribute("style", "color: green; font-size: 4rem");
             p2.setAttribute("style", "color: black; font-size: 3.5rem");
-        }else {
+        }else if(gameController.current() === "O" && gameBoard.board.includes("")) {
             console.log(gameController.playerTwo);
             p2.setAttribute("style", "color: green; font-size: 4rem");
             p1.setAttribute("style", "color: black; font-size: 3.5rem");
+        }else {
+            p1.setAttribute("style", "color: black; font-size: 3.5rem");
+            p2.setAttribute("style", "color: black; font-size: 3.5rem");
         }
+    }
+
+    const winner = () => {
+
     }
     return {current};
 })();
